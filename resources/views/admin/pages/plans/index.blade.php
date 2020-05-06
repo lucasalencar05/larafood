@@ -61,13 +61,18 @@
                    <td>{{$plan->name}}</td>
                    <td>{{number_format($plan->price, 2, ',', '.')}}</td>
                    <td>{{$plan->description}}</td>
-                   <td width="50">
+                   <td width="150">
                       <div class="btn-group">
+                           <a href="{{ route('details.plans.index',  $plan->url) }}" class="btn btn-primary btn-sm"
+                                data-toggle="tooltip" data-placement="top"
+                                title="Detalhes do plano">
+                                <i class="fas fa-info-circle"></i>
+                           </a>
                            <a href="{{ route('plans.edit',  $plan->id) }}" class="btn btn-info btn-sm"
-                                data-toggle="tooltip" data-placement="left"
+                                data-toggle="tooltip" data-placement="top"
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
-                           </a>
+                            </a>
                            <a href="{{ route('plans.show',  $plan->url) }}" class="btn btn-warning btn-sm"
                                 data-toggle="tooltip" data-placement="top"
                                 title="Ver">

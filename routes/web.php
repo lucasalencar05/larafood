@@ -2,29 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-/*
-| Rotas de planos
-*/
-Route::get('admin/plans/create', 'Admin\PlanController@create')->name('plans.create');
-Route::any('admin/plans/search', 'Admin\PlanController@search')->name('plans.search');
-Route::delete('admin/plans/{url}', 'Admin\PlanController@destroy')->name('plans.destroy');
-Route::get('admin/plans/{url}', 'Admin\PlanController@show')->name('plans.show');
-Route::post('admin/plans', 'Admin\PlanController@store')->name('plans.store');
-Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
-Route::get('admin/plans/{id}/edit', 'Admin\PlanController@edit')->name('plans.edit');
-Route::put('admin/plans/{id}', 'Admin\PlanController@update')->name('plans.update');
 
-Route::get('admin', 'Admin\PlanController@index')->name('admin.index');
+Route::prefix('admin')->namespace('Admin')->group(function () {
+        /*
+        | Rotas de detalhes
+        */
+        Route::put('plans/{url}/details/{id}', 'DetailPlanController@update')->name('details.plans.update');
+        Route::get('plans/{url}/details/{id}/edit', 'DetailPlanController@edit')->name('details.plans.edit');
+        Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plans.store');
+        Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plans.create');
+        Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plans.index');
+        /*
+        | Rotas de planos
+        */
+
+        Route::get('plans/create', 'PlanController@create')->name('plans.create');
+        Route::any('plans/search', 'PlanController@search')->name('plans.search');
+        Route::delete('plans/{url}', 'PlanController@destroy')->name('plans.destroy');
+        Route::get('plans/{url}', 'PlanController@show')->name('plans.show');
+        Route::post('plans', 'PlanController@store')->name('plans.store');
+        Route::get('plans', 'PlanController@index')->name('plans.index');
+        Route::get('plans/{id}/edit', 'PlanController@edit')->name('plans.edit');
+        Route::put('plans/{id}', 'PlanController@update')->name('plans.update');
+
+        /*
+         *Home Dashboard
+         */
+        Route::get('/', 'PlanController@index')->name('admin.index');
+    });
+
+
 
 Route::get('/', function () {
     return view('welcome');
