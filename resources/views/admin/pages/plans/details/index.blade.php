@@ -22,13 +22,15 @@
 @section('content')
     <div class="card">
         <div class="card-header">
+
+            @include('admin.includes.alerts')
+
            <div class="row">
             <div class="col col-12">
                 <h1 class="text-right">
                    <a href="{{ route('details.plans.create', $plan->url) }}" class="btn btn-primary"
                     data-toggle="tooltip" data-placement="left"
-                    title="Adicionar"
-                   >
+                    title="Adicionar">
                      <i class="fas fa-plus-square"></i>
                    </a>
                 </h1>
@@ -54,7 +56,7 @@
                                 title="Editar">
                                 <i class="fas fa-edit"></i>
                            </a>
-                           <a href="{{ route('plans.show',  $plan->url) }}" class="btn btn-warning btn-sm"
+                           <a href="{{ route('details.plans.show', [$plan->url, $detail->id]) }}" class="btn btn-warning btn-sm"
                                 data-toggle="tooltip" data-placement="top"
                                 title="Ver">
                                 <i class="fas fa-eye"></i>

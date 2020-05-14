@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', "Detalhes do plano {$plan->name}")
+@section('title', "Detalhes {$detail->name}")
 
 @section('content_header')
-    <h1>Detalhes do plano <b>{{ $plan->name }}</b></h1>
+    <h1>Detalhes <b>{{ $detail->name }}</b></h1>
 @stop
 
 @section('content')
@@ -11,28 +11,16 @@
       <div class="class card-body">
          <ul>
              <li>
-                 <strong>Nome: </strong> {{ $plan->name }}
+                 <strong>Nome: </strong> {{ $detail->name }}
              </li>
-             <li>
-                <strong>URL: </strong> {{ $plan->url }}
-            </li>
-            <li>
-                <strong>Preço: </strong> {{ number_format($plan->price, 2, ',', '.') }}
-            </li>
-            <li>
-                <strong>Descrição: </strong> {{ $plan->description }}
-            </li>
          </ul>
-
-         @include('admin.includes.alerts')
-
-         <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
+         <form action="{{ route('details.plans.destroy', [$plan->url, $detail->id]) }}" method="POST">
             @method('DELETE')
             @csrf
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-danger"
                   data-toggle="tooltip" data-placement="left"
-                  title="Excluir o plano {{ $plan->name }}">
+                  title="Excluir o detalhe {{ $detail->name }}">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>

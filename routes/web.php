@@ -7,10 +7,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         /*
         | Rotas de detalhes
         */
+        Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plans.create');
+        Route::delete('plans/{url}/details/{id}', 'DetailPlanController@destroy')->name('details.plans.destroy');
+        Route::get('plans/{url}/details/{id}', 'DetailPlanController@show')->name('details.plans.show');
         Route::put('plans/{url}/details/{id}', 'DetailPlanController@update')->name('details.plans.update');
         Route::get('plans/{url}/details/{id}/edit', 'DetailPlanController@edit')->name('details.plans.edit');
         Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plans.store');
-        Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plans.create');
         Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plans.index');
         /*
         | Rotas de planos

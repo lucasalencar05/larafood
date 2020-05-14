@@ -21,7 +21,8 @@
             <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
               @csrf
               <div class="input-group mb-1">
-                <input type="text" value="{{ $filters['filter'] ?? '' }}" name="filter" placeholder="Nome" class="form-control">
+                <input type="text" value="{{ $filters['filter'] ?? '' }}"
+                   name="filter" placeholder="Nome" class="form-control">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-dark"
                       data-toggle="tooltip" data-placement="right"
