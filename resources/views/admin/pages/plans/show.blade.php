@@ -8,43 +8,29 @@
 
 @section('content')
     <div class="card">
-      <div class="class card-body">
-         <ul>
-             <li>
-                 <strong>Nome: </strong> {{ $plan->name }}
-             </li>
-             <li>
-                <strong>URL: </strong> {{ $plan->url }}
-            </li>
-            <li>
-                <strong>Preço: </strong> {{ number_format($plan->price, 2, ',', '.') }}
-            </li>
-            <li>
-                <strong>Descrição: </strong> {{ $plan->description }}
-            </li>
-         </ul>
+        <div class="card-body">
+            <ul>
+                <li>
+                    <strong>Nome: </strong> {{ $plan->name }}
+                </li>
+                <li>
+                    <strong>URL: </strong> {{ $plan->url }}
+                </li>
+                <li>
+                    <strong>Preço: </strong> R$ {{ number_format($plan->price, 2, ',', '.') }}
+                </li>
+                <li>
+                    <strong>Descrição: </strong> {{ $plan->description }}
+                </li>
+            </ul>
 
-         @include('admin.includes.alerts')
+            @include('admin.includes.alerts')
 
-         <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <div class="card-footer text-right">
-                <button type="submit" class="btn btn-danger"
-                  data-toggle="tooltip" data-placement="left"
-                  title="Excluir o plano {{ $plan->name }}">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-         </form>
-      </div>
+            <form action="{{ route('plans.destroy', $plan->url) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> DELETAR O PLANO {{ $plan->name }}</button>
+            </form>
+        </div>
     </div>
-@stop
-
-@section('js')
-    <script>
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-@stop
+@endsection

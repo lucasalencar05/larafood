@@ -1,14 +1,11 @@
 @include('admin.includes.alerts')
 
+@csrf
+
 <div class="form-group">
-    <label for="name">Nome:</label>
-  <input type="text" name="name" value="{{ $detail->name ?? old('name') }}" class="form-control" placeholder="Nome">
+    <label>Nome:</label>
+<input type="text" name="name" placeholder="Nome" class="form-control" value="{{ $detail->name ?? old('name') }}">
 </div>
-<div class="card-footer text-right">
-    <button type="submit" class="btn btn-success"
-      data-toggle="tooltip" data-placement="left"
-      title="Enviar"
-    >
-        <i class="fas fa-check"></i>
-    </button>
+<div class="form-group">
+    <button type="submit" class="btn btn-info">Enviar</button>
 </div>
